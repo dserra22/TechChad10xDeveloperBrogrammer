@@ -77,12 +77,11 @@ var loopTime = function () {
     if (num === 5) {
         num = 1; // images 1 - 4
     }
-    if (num === 1) {
-        imgBox.style.backgroundPosition = "top";
-    }
-    else {
-        imgBox.style.backgroundPosition = "center";
-    }
+    // if (num === 1) {
+    //   imgBox.style.backgroundPosition = "";
+    // } else {
+    //   imgBox.style.backgroundPosition = "center";
+    // }
     if (num === 1) {
         imgText.innerHTML = "11/13/22. A Jacked Brogrammer";
     }
@@ -95,7 +94,7 @@ var loopTime = function () {
     else if (num == 4) {
         imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
     }
-    imgBox.style.backgroundImage = "linear-gradient(#3333338F,  #000000F3), url(img/img".concat(num, ".jpg)");
+    imgBox.style.backgroundImage = "linear-gradient(#3333338F,  #000000F3), url(img/img".concat(num, ".").concat(num === 1 ? "png" : "jpg", ")");
     num++;
     setTimeout(function () {
         imgBox.style.opacity = "0";
