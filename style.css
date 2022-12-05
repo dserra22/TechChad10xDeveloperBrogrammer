@@ -574,7 +574,8 @@ a {
 }
 .everything-matters[data-type="2"],
 .everything-matters[data-type="4"],
-.everything-matters[data-type="5"] {
+.everything-matters[data-type="5"],
+.everything-matters[data-type="6"] {
   transform: translateX(0%);
   width: 100%;
   filter: grayscale(50%);

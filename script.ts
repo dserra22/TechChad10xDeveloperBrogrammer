@@ -314,7 +314,8 @@ const toggleImg = (eM: HTMLElement, turnOn: boolean): void => {
   if (
     eM.dataset.type === "2" ||
     eM.dataset.type === "4" ||
-    eM.dataset.type === "5"
+    eM.dataset.type === "5" ||
+    eM.dataset.type === "6"
   ) {
     if (turnOn) {
       setTimeout(function () {
