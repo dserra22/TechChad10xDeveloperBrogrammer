@@ -262,7 +262,10 @@ const mindsetButton: HTMLButtonElement =
   document.querySelector(".next-button.how")!;
 
 mindsetButton.addEventListener("click", function () {
+  console.log("ASODASD");
   switchSections(sectionHow, sectionGallery);
+  everythingMatters.style.display = "block";
+  console.log("display block");
 });
 
 // gallery
@@ -288,7 +291,65 @@ allGalleries.forEach((gallery: Element, i: number) => {
   });
 });
 
-// gallery.addEventListener("mouseenter", function (e) {
-//   if (!e.target.closest(".mindmap") && !e.target.classList.contains("mindmap"))
-//     return;
-// });
+const everythingMattersAll: NodeListOf<HTMLElement> = document.querySelectorAll(
+  ".everything-matters"
+)!;
+
+// create loop to go thru all everything matters with different
+
+const toggleImg = (eM: HTMLElement, turnOn: boolean): void => {
+  // if (eM.dataset.type === "1") {
+  //   // take a loo
+  //   console.log("SEND IN");
+
+  //   let eleim: HTMLElement = document.querySelector(
+  //     ".everything-matters[data-type='2']"
+  //   )!;
+
+  //   if (turnOn) {
+  //     eleim.style.opacity = "1";
+  //   }
+  // }
+
+  if (
+    eM.dataset.type === "2" ||
+    eM.dataset.type === "4" ||
+    eM.dataset.type === "5"
+  ) {
+    if (turnOn) {
+      setTimeout(function () {
+        eM.style.opacity = "1";
+      }, 500);
+    } else {
+      eM.style.opacity = "0";
+    }
+  }
+};
+
+everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
+  console.log(everythingMatters);
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      const ent = entries[0];
+      // console.log(ent);
+      if (ent.isIntersecting === false) {
+        everythingMatters.classList.remove("move-in");
+        toggleImg(everythingMatters, false);
+      }
+      console.log("ADDED");
+      if (ent.isIntersecting === true) {
+        everythingMatters.classList.add("move-in");
+        toggleImg(everythingMatters, true);
+      }
+    },
+    {
+      // In the viewport
+      root: null,
+      threshold: 0,
+      rootMargin: "-120px",
+    }
+  );
+
+  observer.observe(everythingMatters);
+});

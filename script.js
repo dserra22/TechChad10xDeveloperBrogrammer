@@ -170,7 +170,10 @@ howDiv.addEventListener("click", function (e) {
 // switch over to gallery
 var mindsetButton = document.querySelector(".next-button.how");
 mindsetButton.addEventListener("click", function () {
+    console.log("ASODASD");
     switchSections(sectionHow, sectionGallery);
+    everythingMatters.style.display = "block";
+    console.log("display block");
 });
 // gallery
 var selectedGallery = -1;
@@ -189,7 +192,51 @@ allGalleries.forEach(function (gallery, i) {
         textSection.classList.toggle("open-text");
     });
 });
-// gallery.addEventListener("mouseenter", function (e) {
-//   if (!e.target.closest(".mindmap") && !e.target.classList.contains("mindmap"))
-//     return;
-// });
+var everythingMattersAll = document.querySelectorAll(".everything-matters");
+// create loop to go thru all everything matters with different
+var toggleImg = function (eM, turnOn) {
+    // if (eM.dataset.type === "1") {
+    //   // take a loo
+    //   console.log("SEND IN");
+    //   let eleim: HTMLElement = document.querySelector(
+    //     ".everything-matters[data-type='2']"
+    //   )!;
+    //   if (turnOn) {
+    //     eleim.style.opacity = "1";
+    //   }
+    // }
+    if (eM.dataset.type === "2" ||
+        eM.dataset.type === "4" ||
+        eM.dataset.type === "5") {
+        if (turnOn) {
+            setTimeout(function () {
+                eM.style.opacity = "1";
+            }, 500);
+        }
+        else {
+            eM.style.opacity = "0";
+        }
+    }
+};
+everythingMattersAll.forEach(function (everythingMatters, i) {
+    console.log(everythingMatters);
+    var observer = new IntersectionObserver(function (entries) {
+        var ent = entries[0];
+        // console.log(ent);
+        if (ent.isIntersecting === false) {
+            everythingMatters.classList.remove("move-in");
+            toggleImg(everythingMatters, false);
+        }
+        console.log("ADDED");
+        if (ent.isIntersecting === true) {
+            everythingMatters.classList.add("move-in");
+            toggleImg(everythingMatters, true);
+        }
+    }, {
+        // In the viewport
+        root: null,
+        threshold: 0,
+        rootMargin: "-120px"
+    });
+    observer.observe(everythingMatters);
+});

@@ -424,6 +424,9 @@ body {
   right: 5%;
   top: 7.5%;
 }
+.section-background {
+  background-color: #2a2a2a;
+}
 .section-gallery {
   position: absolute;
   width: 100vw;
@@ -433,7 +436,7 @@ body {
   z-index: -1;
   transition: all 1s;
   display: none;
-  padding: 9.8rem 0;
+  padding: 9.8rem 0 0 0;
 }
 .container {
   max-width: 120rem;
@@ -466,6 +469,7 @@ body {
   overflow: hidden;
   border-radius: 24px;
   transition: all 1s;
+  margin-bottom: 4.8rem;
 }
 .figure-image {
   width: 100%;
@@ -513,6 +517,10 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
     url("img/gallery-konrad.jpg");
 }
+.figure-image[data-img="7"] {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("img/gallery-lakin.jpg");
+}
 
 .figure-text {
   width: 0%;
@@ -549,4 +557,34 @@ body {
 
 a {
   color: #b3b3b3;
+}
+
+.everything-matters {
+  font-size: 6.4rem;
+  padding: 9.8rem;
+  text-align: center;
+  transform: translateX(80%);
+  /* visibility: none; */
+  /* display: none; */
+  transition: all 1s;
+}
+
+.everything-matters.move-in {
+  transform: translateX(0%);
+}
+.everything-matters[data-type="2"],
+.everything-matters[data-type="4"],
+.everything-matters[data-type="5"] {
+  transform: translateX(0%);
+  width: 100%;
+  filter: grayscale(50%);
+  display: block;
+
+  opacity: 0;
+  transition: all 2s;
+}
+
+.everything-matters[data-type="5"] {
+  width: 50%;
+  transform: translateX(50%);
 }
