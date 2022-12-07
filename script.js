@@ -208,7 +208,8 @@ var toggleImg = function (eM, turnOn) {
     if (eM.dataset.type === "2" ||
         eM.dataset.type === "4" ||
         eM.dataset.type === "5" ||
-        eM.dataset.type === "6") {
+        eM.dataset.type === "6" ||
+        eM.dataset.type === "7") {
         if (turnOn) {
             setTimeout(function () {
                 eM.style.opacity = "1";

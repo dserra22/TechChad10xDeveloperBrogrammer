@@ -522,6 +522,14 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
     url("img/gallery-lakin.jpg");
 }
+.figure-image[data-img="8"] {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("img/gallery-nick.jpg");
+}
+.figure-image[data-img="9"] {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("img/gallery-anthony.jpg");
+}
 
 .figure-text {
   width: 0%;
@@ -568,6 +576,9 @@ a {
   /* visibility: none; */
   /* display: none; */
   transition: all 1s;
+  border-radius: 100px;
+  /* display: block; */
+  overflow: hidden;
 }
 
 .everything-matters.move-in {
@@ -576,7 +587,8 @@ a {
 .everything-matters[data-type="2"],
 .everything-matters[data-type="4"],
 .everything-matters[data-type="5"],
-.everything-matters[data-type="6"] {
+.everything-matters[data-type="6"],
+.everything-matters[data-type="7"] {
   transform: translateX(0%);
   width: 100%;
   filter: grayscale(50%);
@@ -585,8 +597,17 @@ a {
   opacity: 0;
   transition: all 2s;
 }
+.everything-matters[data-type="7"] {
+  -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.everything-matters[data-type="6"] {
+  border-radius: 200px;
+}
 
-.everything-matters[data-type="5"] {
+.everything-matters[data-type="5"],
+.everything-matters[data-type="7"],
+.everything-matters[data-type="6"] {
   width: 50%;
   transform: translateX(50%);
 }
