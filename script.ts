@@ -8,6 +8,8 @@
 // principle centered learning
 // all career paths
 
+// include a page of your life
+
 const body: HTMLElement = document.body;
 const sectionWhat: HTMLElement = document.querySelector(".section-hero")!;
 const sectionHow: HTMLElement = document.querySelector(".section-how")!;
@@ -20,41 +22,132 @@ const addClass = (elem: HTMLElement, className: string): void => {
   elem.classList.add(className);
 };
 
+let seq: HTMLElement[] = [];
+
+const createSequence = (
+  modal: HTMLDivElement,
+  title: string,
+  count: number
+): void => {
+  if (title.length <= 0) {
+    return;
+  }
+
+  let all = title.split(" ");
+
+  let thisOne: string[] = [];
+  let nextOne: string[] = [];
+  for (let i = 0; i < 9 && all.length > 0; ++i) {
+    thisOne.push(all.shift()!);
+  }
+
+  while (all.length > 0) {
+    nextOne.push(all.shift()!);
+  }
+
+  // we make section and append it
+
+  const neverOnce = create("p");
+
+  neverOnce.innerHTML = thisOne.join(" ");
+  neverOnce.style.transform = `translateY(${-70 + count * 35}px)`;
+
+  addClass(neverOnce, "typed");
+  seq.push(neverOnce);
+
+  // modal.appendChild(neverOnce);
+
+  // now we rejoin title
+
+  createSequence(modal, nextOne.join(" "), count + 1);
+};
+let modal: HTMLDivElement = document.createElement("div");
+
+// console.log(seq);
+const startSeq = () => {
+  if (seq.length <= 0) {
+    return;
+  }
+  let next = seq.shift()!;
+
+  modal.appendChild(next);
+
+  setTimeout(startSeq, 3500);
+};
+
+const deleteChildren = () => {
+  modal.querySelectorAll(".typed").forEach((typed: Element) => {
+    typed.remove();
+  });
+  // for (const children of modal.childNodes) {
+  //   console.log(children);
+  //   // if ((children as HTMLElement).classList.contains("typed")) {
+  //   children.remove();
+  //   // }
+  // }
+};
+
 const openingModal = (): HTMLElement => {
   const section: HTMLElement = document.createElement("section");
   section.classList.add("opening-modal");
 
   // create titles
   const title = create("h1");
-  title.innerHTML = "Tech Chad 10x Developer Brogrammers";
-  //   titles[1].innerHTML = "10x Developer";
-  //   titles[2].innerHTML = "Brogrammers";
+  title.innerHTML = "The Tech Chad 10x Developer Brogrammers";
 
   const pressToEnter = create("i");
   pressToEnter.innerHTML = "Press To Enter";
 
   //   // create modal to house titles
-  const modal: HTMLDivElement = document.createElement("div");
-  addClass(modal, "modal");
+  // let quotes: string[] = [
+  //   "In 2010 famine and malnutrition combined killed about 1 million people, whereas obesity killed about 3 million people.",
+  //   "In 2012... 620,000 people died to human violence. (war killed 100,000 and and crime killed another 520,000. In contrast, 800,000 people commited suicide.",
+  //   "When Colombus discovered the Americas, he did so with the help of a plague named Smallpox. Estimates say that it killed up to 90% of the native populations. But in 1979, the World Health Organization declared that Smallpox had been eradicated.",
+  //   "For the first time in human history we can say that the horrors of famine, war, and plagues are not givens for the majority.",
+  //   "Do not take this for granted. We are blessed to live in this modern day. Seize every opportunity that you are given.",
+  // ];
 
+  createSequence(
+    modal,
+    "This day is priceless. All of the money in the world can never bring today back again. Do not take it for granted, instead seize it, savor it, and honor it.",
+    0
+  );
+  // createSequence(modal, second, 0, []);
+  // createSequence(modal, third, 0, []);
+
+  const removeSeq = () => {
+    setTimeout(function () {
+      deleteChildren();
+      modal.appendChild(title);
+      modal.appendChild(pressToEnter);
+    }, 14000);
+  };
+  startSeq();
+  removeSeq();
+  // pauseSeq();
+
+  // startSeq();
+
+  addClass(modal, "modal");
   //   // append titles to modal
   //   titles.forEach((title: HTMLElement) => {
   // });
-  modal.appendChild(pressToEnter);
+  // modal.appendChild(neverOnce);
   addClass(pressToEnter, "press-to-enter");
 
-  modal.appendChild(title);
+  // modal.appendChild(title);
   addClass(title, "modal--title");
 
   // append btn to modal
   const modalBtn = create("btn");
-  addClass(modalBtn, "modal--btn");
-  modal.appendChild(modalBtn);
+  // addClass(modalBtn, "modal--btn");
+  // modal.appendChild(modalBtn);
 
   // append modal
   section.appendChild(modal);
   return section;
 };
+
 const createBrogrammers = (): void => {
   body.appendChild(openingModal());
 };
@@ -62,12 +155,13 @@ const createBrogrammers = (): void => {
 createBrogrammers();
 
 const openingModalEl: HTMLElement = document.querySelector(".opening-modal")!;
+console.log(openingModalEl);
 
-const modal = openingModalEl?.querySelector(".modal")!;
-
-modal.addEventListener("click", function () {
-  addClass(openingModalEl, "close-modal");
-});
+setTimeout(function () {
+  modal.addEventListener("click", function () {
+    addClass(openingModalEl, "close-modal");
+  });
+}, 1400);
 
 const imgBox: HTMLElement = document.querySelector(".what-is--image-box")!;
 
@@ -100,7 +194,7 @@ const createAccent = (
 createAccent(50, 3, 30, 50);
 
 const loopTime = (): void => {
-  if (num === 5) {
+  if (num === 8) {
     num = 1; // images 1 - 4
   }
 
@@ -118,10 +212,16 @@ const loopTime = (): void => {
     imgText.innerHTML = "11/21/22. A 10x Developer presenting";
   } else if (num == 4) {
     imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
+  } else if (num == 5) {
+    imgText.innerHTML = "11/29/22. Tech Chads racing Arduino RC cars";
+  } else if (num == 6) {
+    imgText.innerHTML = "12/03/22. A Tech Chad riding the Wall Street Bull";
+  } else if (num == 7) {
+    imgText.innerHTML = "12/03/22. A Tech Chad in suspenders";
   }
 
   imgBox.style.backgroundImage = `linear-gradient(#3333338F,  #000000F3), url(img/img${num}.${
-    num === 1 ? "png" : "jpg"
+    num === 1 || num === 5 ? "png" : "jpg"
   })`;
   num++;
 
@@ -146,7 +246,7 @@ loopTime();
 
 const whatIsButton = document.querySelector(".next-button.what-is")!;
 
-console.log(whatIsButton);
+// console.log(whatIsButton);
 
 const switchSections = (thisSection: HTMLElement, nextSection: HTMLElement) => {
   thisSection.classList.add("close-section");
@@ -238,7 +338,6 @@ howDiv.addEventListener("click", function (e: any) {
     return;
 
   // remove old
-  console.log(selectedMind);
   if (selectedMind !== undefined) {
   }
 
@@ -262,10 +361,9 @@ const mindsetButton: HTMLButtonElement =
   document.querySelector(".next-button.how")!;
 
 mindsetButton.addEventListener("click", function () {
-  console.log("ASODASD");
   switchSections(sectionHow, sectionGallery);
-  everythingMatters.style.display = "block";
-  console.log("display block");
+  // everythingMattersAll.style.display = "block";
+  // console.log("display block");
 });
 
 // gallery
@@ -327,9 +425,39 @@ const toggleImg = (eM: HTMLElement, turnOn: boolean): void => {
     }
   }
 };
+// let prevScroll = 0;
+// let thisScroll = window.scrollY;
+// window.addEventListener("scroll", function (e: any) {
+//   everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
+//     if (everythingMatters.classList.contains("move-in")) {
+//       everythingMatters.style.objectPosition = `${
+//         (thisScroll - prevScroll) * 5
+//       }% 50%`;
+//       // let scrollValue = Number(window.scrollY);
+//       // let scrollMultiplier = 0.1;
+//       // // console.log("left" + everythingMatters.offsetTop);
+//       // // console.log(window.scrollY);
+
+//       // let moveBy = scrollValue / everythingMatters.offsetTop;
+
+//       // let move = Math.trunc(moveBy * 100);
+//       // console.log(move);
+//       // everythingMatters.style.transform = `translate(${
+//       //   98 - move > 0 ? 98 - move : 0
+//       // }%, -30px)`;
+//     }
+//     // parallax effect
+//   });
+
+//   prevScroll = thisScroll;
+//   thisScroll = window.scrollY;
+// });
 
 everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
-  console.log(everythingMatters);
+  //   // console.log(everythingMatters);
+  //   if (everythingMatters.classList.contains("move-in")) {
+  //     // parallax effect
+  //   }
 
   const observer = new IntersectionObserver(
     function (entries) {
@@ -339,7 +467,6 @@ everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
         everythingMatters.classList.remove("move-in");
         toggleImg(everythingMatters, false);
       }
-      console.log("ADDED");
       if (ent.isIntersecting === true) {
         everythingMatters.classList.add("move-in");
         toggleImg(everythingMatters, true);
@@ -354,4 +481,13 @@ everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
   );
 
   observer.observe(everythingMatters);
+});
+
+const btnMe: HTMLButtonElement = document.querySelector(".next-button.me")!;
+
+console.log(btnMe);
+const sectionMe: HTMLElement = document.querySelector(".section-me")!;
+
+btnMe.addEventListener("click", function (e: any) {
+  switchSections(sectionGallery, sectionMe);
 });

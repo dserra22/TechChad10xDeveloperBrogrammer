@@ -7,6 +7,7 @@
 // trajectory => how to do it
 // principle centered learning
 // all career paths
+// include a page of your life
 var body = document.body;
 var sectionWhat = document.querySelector(".section-hero");
 var sectionHow = document.querySelector(".section-how");
@@ -17,30 +18,93 @@ var create = function (elem) {
 var addClass = function (elem, className) {
     elem.classList.add(className);
 };
+var seq = [];
+var createSequence = function (modal, title, count) {
+    if (title.length <= 0) {
+        return;
+    }
+    var all = title.split(" ");
+    var thisOne = [];
+    var nextOne = [];
+    for (var i = 0; i < 9 && all.length > 0; ++i) {
+        thisOne.push(all.shift());
+    }
+    while (all.length > 0) {
+        nextOne.push(all.shift());
+    }
+    // we make section and append it
+    var neverOnce = create("p");
+    neverOnce.innerHTML = thisOne.join(" ");
+    neverOnce.style.transform = "translateY(".concat(-70 + count * 35, "px)");
+    addClass(neverOnce, "typed");
+    seq.push(neverOnce);
+    // modal.appendChild(neverOnce);
+    // now we rejoin title
+    createSequence(modal, nextOne.join(" "), count + 1);
+};
+var modal = document.createElement("div");
+// console.log(seq);
+var startSeq = function () {
+    if (seq.length <= 0) {
+        return;
+    }
+    var next = seq.shift();
+    modal.appendChild(next);
+    setTimeout(startSeq, 3500);
+};
+var deleteChildren = function () {
+    modal.querySelectorAll(".typed").forEach(function (typed) {
+        typed.remove();
+    });
+    // for (const children of modal.childNodes) {
+    //   console.log(children);
+    //   // if ((children as HTMLElement).classList.contains("typed")) {
+    //   children.remove();
+    //   // }
+    // }
+};
 var openingModal = function () {
     var section = document.createElement("section");
     section.classList.add("opening-modal");
     // create titles
     var title = create("h1");
-    title.innerHTML = "Tech Chad 10x Developer Brogrammers";
-    //   titles[1].innerHTML = "10x Developer";
-    //   titles[2].innerHTML = "Brogrammers";
+    title.innerHTML = "The Tech Chad 10x Developer Brogrammers";
     var pressToEnter = create("i");
     pressToEnter.innerHTML = "Press To Enter";
     //   // create modal to house titles
-    var modal = document.createElement("div");
+    // let quotes: string[] = [
+    //   "In 2010 famine and malnutrition combined killed about 1 million people, whereas obesity killed about 3 million people.",
+    //   "In 2012... 620,000 people died to human violence. (war killed 100,000 and and crime killed another 520,000. In contrast, 800,000 people commited suicide.",
+    //   "When Colombus discovered the Americas, he did so with the help of a plague named Smallpox. Estimates say that it killed up to 90% of the native populations. But in 1979, the World Health Organization declared that Smallpox had been eradicated.",
+    //   "For the first time in human history we can say that the horrors of famine, war, and plagues are not givens for the majority.",
+    //   "Do not take this for granted. We are blessed to live in this modern day. Seize every opportunity that you are given.",
+    // ];
+    createSequence(modal, "This day is priceless. All of the money in the world can never bring today back. Do not take it for granted, instead seize it, savor it, and honor it.", 0);
+    // createSequence(modal, second, 0, []);
+    // createSequence(modal, third, 0, []);
+    var removeSeq = function () {
+        setTimeout(function () {
+            deleteChildren();
+            modal.appendChild(title);
+            modal.appendChild(pressToEnter);
+        }, 14000);
+    };
+    startSeq();
+    removeSeq();
+    // pauseSeq();
+    // startSeq();
     addClass(modal, "modal");
     //   // append titles to modal
     //   titles.forEach((title: HTMLElement) => {
     // });
-    modal.appendChild(pressToEnter);
+    // modal.appendChild(neverOnce);
     addClass(pressToEnter, "press-to-enter");
-    modal.appendChild(title);
+    // modal.appendChild(title);
     addClass(title, "modal--title");
     // append btn to modal
     var modalBtn = create("btn");
-    addClass(modalBtn, "modal--btn");
-    modal.appendChild(modalBtn);
+    // addClass(modalBtn, "modal--btn");
+    // modal.appendChild(modalBtn);
     // append modal
     section.appendChild(modal);
     return section;
@@ -50,10 +114,12 @@ var createBrogrammers = function () {
 };
 createBrogrammers();
 var openingModalEl = document.querySelector(".opening-modal");
-var modal = openingModalEl === null || openingModalEl === void 0 ? void 0 : openingModalEl.querySelector(".modal");
-modal.addEventListener("click", function () {
-    addClass(openingModalEl, "close-modal");
-});
+console.log(openingModalEl);
+setTimeout(function () {
+    modal.addEventListener("click", function () {
+        addClass(openingModalEl, "close-modal");
+    });
+}, 1400);
 var imgBox = document.querySelector(".what-is--image-box");
 var num = 1;
 var milli = 5000;
@@ -74,7 +140,7 @@ var createAccent = function (length, amount, left, top) {
 };
 createAccent(50, 3, 30, 50);
 var loopTime = function () {
-    if (num === 5) {
+    if (num === 8) {
         num = 1; // images 1 - 4
     }
     // if (num === 1) {
@@ -94,7 +160,16 @@ var loopTime = function () {
     else if (num == 4) {
         imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
     }
-    imgBox.style.backgroundImage = "linear-gradient(#3333338F,  #000000F3), url(img/img".concat(num, ".").concat(num === 1 ? "png" : "jpg", ")");
+    else if (num == 5) {
+        imgText.innerHTML = "11/29/22. Tech Chads racing Arduino RC cars";
+    }
+    else if (num == 6) {
+        imgText.innerHTML = "12/03/22. A Tech Chad riding the Wall Street Bull";
+    }
+    else if (num == 7) {
+        imgText.innerHTML = "12/03/22. A Tech Chad in suspenders";
+    }
+    imgBox.style.backgroundImage = "linear-gradient(#3333338F,  #000000F3), url(img/img".concat(num, ".").concat(num === 1 || num === 5 ? "png" : "jpg", ")");
     num++;
     setTimeout(function () {
         imgBox.style.opacity = "0";
@@ -111,7 +186,7 @@ loopTime();
 // background color => title in cursive,
 // with font
 var whatIsButton = document.querySelector(".next-button.what-is");
-console.log(whatIsButton);
+// console.log(whatIsButton);
 var switchSections = function (thisSection, nextSection) {
     thisSection.classList.add("close-section");
     setTimeout(function () {
@@ -153,7 +228,6 @@ howDiv.addEventListener("click", function (e) {
     if (!e.target.closest(".mindmap") && !e.target.classList.contains("mindmap"))
         return;
     // remove old
-    console.log(selectedMind);
     if (selectedMind !== undefined) {
     }
     selectedMind !== undefined
@@ -170,10 +244,9 @@ howDiv.addEventListener("click", function (e) {
 // switch over to gallery
 var mindsetButton = document.querySelector(".next-button.how");
 mindsetButton.addEventListener("click", function () {
-    console.log("ASODASD");
     switchSections(sectionHow, sectionGallery);
-    everythingMatters.style.display = "block";
-    console.log("display block");
+    // everythingMattersAll.style.display = "block";
+    // console.log("display block");
 });
 // gallery
 var selectedGallery = -1;
@@ -220,8 +293,35 @@ var toggleImg = function (eM, turnOn) {
         }
     }
 };
+// let prevScroll = 0;
+// let thisScroll = window.scrollY;
+// window.addEventListener("scroll", function (e: any) {
+//   everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
+//     if (everythingMatters.classList.contains("move-in")) {
+//       everythingMatters.style.objectPosition = `${
+//         (thisScroll - prevScroll) * 5
+//       }% 50%`;
+//       // let scrollValue = Number(window.scrollY);
+//       // let scrollMultiplier = 0.1;
+//       // // console.log("left" + everythingMatters.offsetTop);
+//       // // console.log(window.scrollY);
+//       // let moveBy = scrollValue / everythingMatters.offsetTop;
+//       // let move = Math.trunc(moveBy * 100);
+//       // console.log(move);
+//       // everythingMatters.style.transform = `translate(${
+//       //   98 - move > 0 ? 98 - move : 0
+//       // }%, -30px)`;
+//     }
+//     // parallax effect
+//   });
+//   prevScroll = thisScroll;
+//   thisScroll = window.scrollY;
+// });
 everythingMattersAll.forEach(function (everythingMatters, i) {
-    console.log(everythingMatters);
+    //   // console.log(everythingMatters);
+    //   if (everythingMatters.classList.contains("move-in")) {
+    //     // parallax effect
+    //   }
     var observer = new IntersectionObserver(function (entries) {
         var ent = entries[0];
         // console.log(ent);
@@ -229,7 +329,6 @@ everythingMattersAll.forEach(function (everythingMatters, i) {
             everythingMatters.classList.remove("move-in");
             toggleImg(everythingMatters, false);
         }
-        console.log("ADDED");
         if (ent.isIntersecting === true) {
             everythingMatters.classList.add("move-in");
             toggleImg(everythingMatters, true);
@@ -241,4 +340,10 @@ everythingMattersAll.forEach(function (everythingMatters, i) {
         rootMargin: "-120px"
     });
     observer.observe(everythingMatters);
+});
+var btnMe = document.querySelector(".next-button.me");
+console.log(btnMe);
+var sectionMe = document.querySelector(".section-me");
+btnMe.addEventListener("click", function (e) {
+    switchSections(sectionGallery, sectionMe);
 });
