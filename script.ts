@@ -213,7 +213,7 @@ const loopTime = (): void => {
   } else if (num == 4) {
     imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
   } else if (num == 5) {
-    imgText.innerHTML = "11/29/22. Tech Chads racing Arduino RC cars";
+    imgText.innerHTML = "11/29/22. Brogrammers racing Arduino RC cars";
   } else if (num == 6) {
     imgText.innerHTML = "12/03/22. A Tech Chad riding the Wall Street Bull";
   } else if (num == 7) {
