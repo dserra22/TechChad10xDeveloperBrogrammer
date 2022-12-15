@@ -79,7 +79,7 @@ var openingModal = function () {
     //   "For the first time in human history we can say that the horrors of famine, war, and plagues are not givens for the majority.",
     //   "Do not take this for granted. We are blessed to live in this modern day. Seize every opportunity that you are given.",
     // ];
-    createSequence(modal, "This day is priceless. All of the money in the world can never bring today back. Do not take it for granted, instead seize it, savor it, and honor it.", 0);
+    createSequence(modal, "This day is priceless. All of the money in the world can never bring today back again. Do not take it for granted, instead seize it, savor it, and honor it.", 0);
     // createSequence(modal, second, 0, []);
     // createSequence(modal, third, 0, []);
     var removeSeq = function () {
@@ -161,7 +161,7 @@ var loopTime = function () {
         imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
     }
     else if (num == 5) {
-        imgText.innerHTML = "11/29/22. Tech Chads racing Arduino RC cars";
+        imgText.innerHTML = "11/29/22. Brogrammers racing Arduino RC cars";
     }
     else if (num == 6) {
         imgText.innerHTML = "12/03/22. A Tech Chad riding the Wall Street Bull";
@@ -294,53 +294,59 @@ var toggleImg = function (eM, turnOn) {
     }
 };
 // let prevScroll = 0;
-// let thisScroll = window.scrollY;
-// window.addEventListener("scroll", function (e: any) {
-//   everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
-//     if (everythingMatters.classList.contains("move-in")) {
-//       everythingMatters.style.objectPosition = `${
-//         (thisScroll - prevScroll) * 5
-//       }% 50%`;
-//       // let scrollValue = Number(window.scrollY);
-//       // let scrollMultiplier = 0.1;
-//       // // console.log("left" + everythingMatters.offsetTop);
-//       // // console.log(window.scrollY);
-//       // let moveBy = scrollValue / everythingMatters.offsetTop;
-//       // let move = Math.trunc(moveBy * 100);
-//       // console.log(move);
-//       // everythingMatters.style.transform = `translate(${
-//       //   98 - move > 0 ? 98 - move : 0
-//       // }%, -30px)`;
-//     }
-//     // parallax effect
-//   });
-//   prevScroll = thisScroll;
-//   thisScroll = window.scrollY;
-// });
-everythingMattersAll.forEach(function (everythingMatters, i) {
-    //   // console.log(everythingMatters);
-    //   if (everythingMatters.classList.contains("move-in")) {
-    //     // parallax effect
-    //   }
-    var observer = new IntersectionObserver(function (entries) {
-        var ent = entries[0];
-        // console.log(ent);
-        if (ent.isIntersecting === false) {
-            everythingMatters.classList.remove("move-in");
-            toggleImg(everythingMatters, false);
+var thisScroll = window.scrollY;
+window.addEventListener("scroll", function (e) {
+    console.log("SCROLL");
+    everythingMattersAll.forEach(function (everythingMatters, i) {
+        if (everythingMatters.classList.contains("move-in")) {
         }
-        if (ent.isIntersecting === true) {
-            everythingMatters.classList.add("move-in");
-            toggleImg(everythingMatters, true);
-        }
-    }, {
-        // In the viewport
-        root: null,
-        threshold: 0,
-        rootMargin: "-120px"
+        // everythingMatters.style.objectPosition = `${
+        //   (thisScroll - prevScroll) * 5
+        // }% 50%`;
+        var scrollValue = Number(window.scrollY);
+        // let scrollMultiplier = 0.1;
+        // // console.log("left" + everythingMatters.offsetTop);
+        // // console.log(window.scrollY);
+        // let moveBy = scrollValue / everythingMatters.offsetTop;
+        // let move = Math.trunc(moveBy * 100);
+        // console.log(move);
+        console.log("DO");
+        // everythingMatters.style.transform = `rotateX(10deg) perspecive(500px) translateZ(-${Math.trunc(
+        //   scrollValue
+        // )}px)`;
+        var num = Math.trunc(scrollValue);
+        everythingMatters.style.transform = "perspective(100px) translateZ(".concat(num - 1000 - i * 100, "px)");
+        console.log(num);
+        // parallax effect
     });
-    observer.observe(everythingMatters);
 });
+// everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
+//   //   // console.log(everythingMatters);
+//   //   if (everythingMatters.classList.contains("move-in")) {
+//   //     // parallax effect
+//   //   }
+//   const observer = new IntersectionObserver(
+//     function (entries) {
+//       const ent = entries[0];
+//       // console.log(ent);
+//       if (ent.isIntersecting === false) {
+//         everythingMatters.classList.remove("move-in");
+//         toggleImg(everythingMatters, false);
+//       }
+//       if (ent.isIntersecting === true) {
+//         everythingMatters.classList.add("move-in");
+//         toggleImg(everythingMatters, true);
+//       }
+//     },
+//     {
+//       // In the viewport
+//       root: null,
+//       threshold: 0,
+//       rootMargin: "-120px",
+//     }
+//   );
+//   observer.observe(everythingMatters);
+// });
 var btnMe = document.querySelector(".next-button.me");
 console.log(btnMe);
 var sectionMe = document.querySelector(".section-me");
