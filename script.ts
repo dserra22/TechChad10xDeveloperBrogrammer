@@ -194,7 +194,7 @@ const createAccent = (
 createAccent(50, 3, 30, 50);
 
 const loopTime = (): void => {
-  if (num === 8) {
+  if (num === 9) {
     num = 1; // images 1 - 4
   }
 
