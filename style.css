@@ -561,6 +561,10 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
     url("img/gallery-anthony.jpg");
 }
+.figure-image[data-img="10"] {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("img/gallery-aiban.JPG");
+}
 
 .figure-text {
   width: 0%;
