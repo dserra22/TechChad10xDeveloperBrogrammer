@@ -480,14 +480,14 @@ everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
     }
   );
 
-  observer.observe(everythingMatters);
-});
+//   observer.observe(everythingMatters);
+// });
 
-const btnMe: HTMLButtonElement = document.querySelector(".next-button.me")!;
+// const btnMe: HTMLButtonElement = document.querySelector(".next-button.me")!;
 
-console.log(btnMe);
-const sectionMe: HTMLElement = document.querySelector(".section-me")!;
+// console.log(btnMe);
+// const sectionMe: HTMLElement = document.querySelector(".section-me")!;
 
-btnMe.addEventListener("click", function (e: any) {
-  switchSections(sectionGallery, sectionMe);
-});
+// btnMe.addEventListener("click", function (e: any) {
+//   switchSections(sectionGallery, sectionMe);
+// });
