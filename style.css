@@ -59,6 +59,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #000;
+  position: relative;
 }
 h2 {
   margin-top: 2.4rem;
@@ -700,26 +701,31 @@ img {
 }
 
 .mobile {
-  visibility: none;
+  visibility: hidden;
   opacity: 0;
-  pointer-events: hidden;
-  width: 100%;
-  height: 100%;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
   background-color: #2a2a2a;
   z-index: 99;
   font-size: 6.4rem;
   text-align: center;
   padding: 6.4rem;
   display: none;
+  position: absolute;
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
 }
 
-@media (max-width: 57em) {
+@media (max-width: 63em) {
   .mobile {
     z-index: 999999;
-    vibility: 1;
+    visibility: visible;
     opacity: 1;
     pointer-events: initial;
     display: block;
+    font-size: 4.2rem;
   }
 }
 
