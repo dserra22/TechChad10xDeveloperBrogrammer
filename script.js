@@ -50,7 +50,7 @@ var startSeq = function () {
     }
     var next = seq.shift();
     modal.appendChild(next);
-    setTimeout(startSeq, 3500);
+    setTimeout(startSeq, 3000);
 };
 var deleteChildren = function () {
     modal.querySelectorAll(".typed").forEach(function (typed) {
@@ -79,7 +79,7 @@ var openingModal = function () {
     //   "For the first time in human history we can say that the horrors of famine, war, and plagues are not givens for the majority.",
     //   "Do not take this for granted. We are blessed to live in this modern day. Seize every opportunity that you are given.",
     // ];
-    createSequence(modal, "This day is priceless. All of the money in the world can never bring today back. Do not take it for granted, instead seize it, savor it, and honor it.", 0);
+    createSequence(modal, "This day is priceless. All of the money in the world can never bring today back again. Do not take it for granted, instead seize it, savor it, and honor it.", 0);
     // createSequence(modal, second, 0, []);
     // createSequence(modal, third, 0, []);
     var removeSeq = function () {
@@ -87,7 +87,7 @@ var openingModal = function () {
             deleteChildren();
             modal.appendChild(title);
             modal.appendChild(pressToEnter);
-        }, 14000);
+        }, 12000); // this is calulated by # of lines * 3
     };
     startSeq();
     removeSeq();
@@ -140,7 +140,7 @@ var createAccent = function (length, amount, left, top) {
 };
 createAccent(50, 3, 30, 50);
 var loopTime = function () {
-    if (num === 8) {
+    if (num === 9) {
         num = 1; // images 1 - 4
     }
     // if (num === 1) {
@@ -161,7 +161,7 @@ var loopTime = function () {
         imgText.innerHTML = "11/21/22. A 10x Developer presenting (2x)";
     }
     else if (num == 5) {
-        imgText.innerHTML = "11/29/22. Tech Chads racing Arduino RC cars";
+        imgText.innerHTML = "11/29/22. Brogrammers racing Arduino RC cars";
     }
     else if (num == 6) {
         imgText.innerHTML = "12/03/22. A Tech Chad riding the Wall Street Bull";
@@ -341,9 +341,9 @@ everythingMattersAll.forEach(function (everythingMatters, i) {
     });
     observer.observe(everythingMatters);
 });
-var btnMe = document.querySelector(".next-button.me");
-console.log(btnMe);
-var sectionMe = document.querySelector(".section-me");
-btnMe.addEventListener("click", function (e) {
-    switchSections(sectionGallery, sectionMe);
-});
+// const btnMe: HTMLButtonElement = document.querySelector(".next-button.me")!;
+// console.log(btnMe);
+// const sectionMe: HTMLElement = document.querySelector(".section-me")!;
+// btnMe.addEventListener("click", function (e: any) {
+//   switchSections(sectionGallery, sectionMe);
+// });

@@ -72,7 +72,7 @@ const startSeq = () => {
 
   modal.appendChild(next);
 
-  setTimeout(startSeq, 3500);
+  setTimeout(startSeq, 3000);
 };
 
 const deleteChildren = () => {
@@ -120,7 +120,7 @@ const openingModal = (): HTMLElement => {
       deleteChildren();
       modal.appendChild(title);
       modal.appendChild(pressToEnter);
-    }, 14000);
+    }, 12000); // this is calulated by # of lines * 3
   };
   startSeq();
   removeSeq();
@@ -480,8 +480,8 @@ everythingMattersAll.forEach((everythingMatters: HTMLElement, i: number) => {
     }
   );
 
-//   observer.observe(everythingMatters);
-// });
+  observer.observe(everythingMatters);
+});
 
 // const btnMe: HTMLButtonElement = document.querySelector(".next-button.me")!;
 

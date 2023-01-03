@@ -175,7 +175,7 @@ body {
   height: 100%;
   -webkit-clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
   clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-  background-color: blue;
+  background-color: transparent;
   transform: translate(0%, -50%);
   background-image: url("img/img1.jpg"), linear-gradient(#2a2a2a, #2a2a2a);
   background-position: center;
